@@ -431,3 +431,21 @@ Monitor changes in shipment distance, service type, hub capacity, shipment volum
 A change in the distribution of incoming features may indicate data drift. A decline in prediction performance after actual delivery outcomes become available may indicate concept drift.
 
 Investigate these changes before deciding whether to retrain the model or update operational procedures.
+
+## Limitations
+
+1. **Synthetic dataset:** The shipment and hub data are synthetic. Model performance may differ when applied to real-world Delhivery operations.
+
+2. **Limited evaluation data:** The final test set contains 180 shipments. A larger and more diverse dataset is needed to establish reliable performance across different operating conditions.
+
+3. **Classification errors:** The final classifier does not identify every delayed shipment. Its test precision is 68.89% and recall is 75.61%, so false positives and false negatives remain possible.
+
+4. **Threshold dependency:** The classification results and operational workload depend on the selected probability threshold of 0.50. Different business priorities may require a different threshold.
+
+5. **Hub segmentation limitations:** K-Means clustering uses four aggregated hub-level metrics. Hub performance may change over time, and the three segments may not capture every operational factor.
+
+6. **Feature availability:** Predictions depend on input features such as distance, weather indicators, sale-event flags, and hub information being available and correctly recorded.
+
+7. **No live production integration:** The current pipeline generates predictions from CSV files. It is not connected to a live shipment tracking system, dispatch platform, or customer notification service.
+
+8. **Data and concept drift:** Changes in shipment volumes, weather patterns, hub capacity, customer behaviour, and operational processes may reduce model performance over time. Regular monitoring and retraining are necessary.
